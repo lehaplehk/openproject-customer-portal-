@@ -12,20 +12,26 @@ from datetime import datetime, timedelta, timezone
 import requests
 import time
 import random 
-from dotenv import load_dotenv
-
-load_dotenv()
+import env
+from aut import aut_api  
 
 app = Flask(__name__)
+app.register_blueprint(aut_api, url_prefix="/aut")
 
-api_key = os.getenv('API_KEY')
+PageConf = open("./custom/page.json", 'r')
+PageConf = json.load(PageConf)
 
-print(api_key)
-#import sys  
-#    if sys.argv[1] == "--new-key":
-#        dbentities.GEN_KEYS()
-#        app.run(host=WebConf["ip"], port=WebConf['port'])
-#    if sys.argv[1] == "--start":
-#        app.run(host=WebConf["ip"], port=WebConf['port'])
-#    if sys.argv[1] == "--start-ssl":
-#        app.run(host=WebConf["ip"], port=WebConf['port'],ssl_context=('./ssl/cert.pem', './ssl/key.pem'))
+@app.route('/')
+def home():
+    return render_template("index.html",
+        CUSTOMER_PORTAL_NAME=env.CUSTOMER_PORTAL_NAME)
+
+@app.route('/signin')
+def signin():
+    return render_template("aut/signin.html",
+        CUSTOMER_PORTAL_NAME=env.CUSTOMER_PORTAL_NAME)
+
+
+
+app.run(host=env.LISTEN_ADRESS, port=env.LISTEN_PORT)
+

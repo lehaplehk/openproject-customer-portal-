@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-icons.css') }}" rel="stylesheet">
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/openproject.ico') }}">
+
+    <meta charset="UTF-8">
+    <title>{{CUSTOMER_PORTAL_NAME}}</title>
+  </head>
+    <body id="" class="" style="width:100%; overflow: hidden; padding: 0px; background-color: #000000;" >
+    
+
+      <div class="position-relative body-content-mb" style="overflow-y: hidden;overflow-x: hidden; height: 100vh"  id="body-content">
+      {% block content %}{% endblock %}
+      </div>
+  
+    </body>
+
+    <div class="toast-messages-list position-absolute bottom-0 end-0" id="toast-messages-list">
+</html>
